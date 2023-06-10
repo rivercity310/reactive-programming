@@ -1,4 +1,4 @@
-package com.example.reactive
+package com.example.reactive.streaming
 
 class Dish(
     var description: String,

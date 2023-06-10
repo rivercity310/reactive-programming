@@ -1,4 +1,4 @@
-package com.example.reactive
+package com.example.reactive.streaming
 
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux

@@ -1,4 +1,4 @@
-package com.example.reactive
+package com.example.reactive.streaming
 
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
