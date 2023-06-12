@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  application:
+    container_name: r2dbc
+
+    ports:
+      - "8080:8080"
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    environment:
+      TZ: "Asia/Seoul"
+
+  mongo:
+    container_name: mongo-container
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+
+    depends_on:
+      - application
+
+    volumes:
+      - ~/Desktop/mongo/data:/var/lib/mongo/data
