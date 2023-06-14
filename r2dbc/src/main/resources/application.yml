@@ -6,6 +6,6 @@ spring:
       port: 27017
 
   webflux:
-    hiddenmethod:
+    hiddenmethod:     # GET, POST 방식 이외의 메서드 활성화 (디폴트: 비활성화)
       filter:
         enabled: true

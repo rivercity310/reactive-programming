@@ -11,8 +11,8 @@ class TemplateDatabaseLoader {
     @Bean
     internal fun initialize(mongo: ReactiveMongoOperations): CommandLineRunner {
         return CommandLineRunner {
-            mongo.save(Item(name = "Alf alarm clock", price = 19.99)).subscribe()
-            mongo.save(Item(name = "Smurf TV tray", price = 24.99)).subscribe()
+            mongo.save(Item(name = "Alf alarm clock", price = 19.99, description = "aaa")).subscribe()
+            mongo.save(Item(name = "Smurf TV tray", price = 24.99, description = "bbb")).subscribe()
         }
     }
 }

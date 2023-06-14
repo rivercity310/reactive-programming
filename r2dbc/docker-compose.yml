@@ -15,7 +15,7 @@ services:
       TZ: "Asia/Seoul"
 
   mongo:
-    container_name: mongo-container
+    container_name: mongo
     image: mongo:latest
     ports:
       - "27017:27017"

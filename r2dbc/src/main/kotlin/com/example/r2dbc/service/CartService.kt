@@ -14,7 +14,7 @@ class CartService(
 ) {
     internal fun addToCart(cartId: String, id: String): Mono<Cart> {
         return this.cartRepository.findById(cartId)
-                .defaultIfEmpty(Cart(cartId))
+                .defaultIfEmpty(Cart(cartId))        // Mono<Cart>
                 .flatMap { cart -> cart.cartItems.stream()
                         .filter { it.item.id.equals(id) }
                         .findAny()
