@@ -1,4 +1,4 @@
-package design_pattern
+package pattern
 
 data class Car(val brand: String)
 
