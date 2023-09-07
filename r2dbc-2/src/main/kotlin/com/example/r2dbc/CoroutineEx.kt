@@ -1,10 +1,12 @@
 package com.example.r2dbc
 
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    asyncEx()
+    flowEx()
 }
 
 // runBlocking : Coroutine을 생성해주는 Builder, runBlocking 내부 코드의 실행이 끝날때까지 해당 스레드가 Blocking 됨
@@ -73,4 +75,42 @@ fun asyncEx() = runBlocking<Unit> {
     }
 
     println("result2 : ${result2.await()}")
+}
+
+fun printHello() = println("Hello ${Thread.currentThread().name}")
+
+// suspend : 일시중단과 재개가 가능한 함수
+// coroutineScope : 현재 Thread를 Blocking 하지 않고 Coroutine을 실행 <--> runBlocking
+suspend fun doSomething() {
+    coroutineScope {
+        launch {
+            delay(2000)
+            println("World! ${Thread.currentThread().name}")
+        }
+
+        launch {
+            delay(1010)
+            printHello()
+        }
+
+        println("in coroutineScope ${Thread.currentThread().name}")
+    }
+
+    println("outside coroutineScope ${Thread.currentThread().name}")
+}
+
+fun simple() : Flow<Int> = flow {
+    println("Flow started")
+
+    for (i in 1..3) {
+        delay(100)
+        emit(i)
+    }
+
+    println("Flow end")
+}
+
+fun flowEx() = runBlocking<Unit> {
+    val flow = simple()
+    flow.collect { println(it) }   // collect : flow의 terminal operation (최종 연산자)
 }
