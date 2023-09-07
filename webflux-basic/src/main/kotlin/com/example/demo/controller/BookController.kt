@@ -19,6 +19,12 @@ class BookController(private val bookService: BookService) {
         return bookService.getAll()
     }
 
+    @GetMapping("/books/blockingTest")
+    fun getAllWithBlockingTest() : Flux<Book> {
+        Thread.sleep(3500)
+        return bookService.getAll()
+    }
+
     @GetMapping("/books/{id}")
     fun get(@PathVariable id: Int) : Mono<Book> {
         return bookService.get(id)
@@ -31,6 +37,12 @@ class BookController(private val bookService: BookService) {
 
     @DeleteMapping("/books/{id}")
     fun delete(@PathVariable id: Int) : Mono<Void> {
+        return bookService.delete(id)
+    }
+
+    @DeleteMapping("/books/blockingTest/{id}")
+    fun deleteBlockingTest(@PathVariable id: Int) : Mono<Void> {
+        Thread.sleep(3000)
         return bookService.delete(id)
     }
 }
