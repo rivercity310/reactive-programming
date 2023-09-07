@@ -1,5 +1,6 @@
 package com.example.demo.service
 
+import com.example.demo.entity.Book
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -7,16 +8,11 @@ import reactor.kotlin.core.publisher.toFlux
 import reactor.kotlin.core.publisher.toMono
 import java.util.concurrent.atomic.AtomicInteger
 
-data class Book(
-    val id: Int,
-    val name: String,
-    val price: Int
-)
-
 @Service
 class BookService {
     private final val nextId = AtomicInteger(0)
 
+    /*
     private val books = mutableListOf(
         Book(id = nextId.incrementAndGet(), name = "1번 책", price = 10000),
         Book(id = nextId.incrementAndGet(), name = "2번 책", price = 20000),
@@ -53,4 +49,5 @@ class BookService {
             .map { books.remove(it) }
             .then()
     }
+    */
 }

@@ -1,6 +1,6 @@
 package com.example.demo.controller
 
-import com.example.demo.service.Book
+import com.example.demo.entity.Book
 import org.slf4j.LoggerFactory
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpMethod
