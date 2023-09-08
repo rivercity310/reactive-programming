@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.flow
 import kotlin.system.measureTimeMillis
 
 fun main() {
-    flowEx()
+    launchTest()
 }
 
 // runBlocking : Coroutine을 생성해주는 Builder, runBlocking 내부 코드의 실행이 끝날때까지 해당 스레드가 Blocking 됨
@@ -113,4 +113,74 @@ fun simple() : Flow<Int> = flow {
 fun flowEx() = runBlocking<Unit> {
     val flow = simple()
     flow.collect { println(it) }   // collect : flow의 terminal operation (최종 연산자)
+}
+
+fun runBlockingTest() = runBlocking {
+    val a = runBlocking {
+        delay(3000)
+        10
+    }
+
+    println("a is done")
+
+    val b = runBlocking {
+        delay(2000)
+        20
+    }
+
+    println("b is done")
+
+    println(a + b)
+}
+
+fun coroutineScopeEx() = runBlocking {
+
+    val a = coroutineScope {
+        delay(3000)
+        10
+    }
+
+    println("a is done")
+
+    val b = coroutineScope {
+        delay(2000)
+        20
+    }
+
+
+    println("b is done")
+
+    println(a + b)
+}
+
+fun asyncTest() = runBlocking {
+    val a = async {
+        delay(3000)
+        10
+    }
+
+    println("a is done")
+
+    val b = async {
+        delay(2000)
+        20
+    }
+
+    println("b is done")
+
+    println(a.await() + b.await())
+}
+
+fun launchTest() = runBlocking {
+    val a = launch {
+        delay(3000)
+    }
+
+    println("a is done")
+
+    val b = launch {
+        delay(2000)
+    }
+
+    println("b is done")
 }
