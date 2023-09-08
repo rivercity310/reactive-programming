@@ -14,6 +14,10 @@ class KitchenService {
             .delayElements(Duration.ofMillis(250))
     }
 
+    fun getDish(id: Int) : Dish {
+        return try { menu[id] } catch (e : Exception) { Dish("x") }
+    }
+
     private fun randomDish() : Dish {
         return menu.get(picker.nextInt(menu.size))
     }
