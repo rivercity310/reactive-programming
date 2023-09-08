@@ -1,11 +1,11 @@
-package com.example.r2dbc
+package com.example.cartEx
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class R2dbcApplication
+class CartExApplication
 
 fun main(args: Array<String>) {
-	runApplication<R2dbcApplication>(*args)
+	runApplication<CartExApplication>(*args)
 }

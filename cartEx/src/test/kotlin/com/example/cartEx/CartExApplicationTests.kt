@@ -1,10 +1,10 @@
-package com.example.r2dbc
+package com.example.cartEx
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class R2dbcApplicationTests {
+class CartExApplicationTests {
 
 	@Test
 	fun contextLoads() {
