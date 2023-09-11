@@ -5,6 +5,7 @@ import com.example.cartEx.domain.CartItem
 import com.example.cartEx.repository.CartRepository
 import com.example.cartEx.repository.ItemRepository
 import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -29,6 +30,22 @@ class HomeController(
             )
             .build()
         )
+    }
+
+    @DeleteMapping("/delete/{id}")
+    fun deleteItem(@PathVariable id: String) : Mono<String> {
+        return cartRepository.findById(MY_CART)
+            .flatMap { cart -> cart.cartItems.stream()
+                .filter { cartItem -> cartItem.item.id == id }
+                .findFirst()
+                .map { cartItem ->
+                    cart.cartItems.remove(cartItem)
+                    Mono.just(cart)
+                }
+                .orElseGet { Mono.just(cart) }
+            }
+            .flatMap { cart -> cartRepository.save(cart) }
+            .thenReturn("redirect:/")
     }
 
     @PostMapping("/add/{id}")

@@ -7,3 +7,8 @@ spring:
 
   thymeleaf:
     cache: false
+
+  webflux:
+    hiddenmethod:
+      filter:
+        enabled: true
