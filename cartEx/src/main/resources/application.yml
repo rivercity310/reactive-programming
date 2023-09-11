@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      username:
+      password:
+      uri: mongodb://127.0.0.1:27017/cart
+
+  thymeleaf:
+    cache: false
