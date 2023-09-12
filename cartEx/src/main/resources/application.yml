@@ -1,10 +1,4 @@
 spring:
-  data:
-    mongodb:
-      username:
-      password:
-      uri: mongodb://127.0.0.1:27017/cart
-
   thymeleaf:
     cache: false
 
@@ -12,3 +6,16 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+
+  r2dbc:
+    username: postgres
+    password: 1111
+    url: r2dbc:postgresql://127.0.0.1:5432/test
+    properties:
+      sslMode: REQUIRE
+
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/cart
+      username:
+      password:
