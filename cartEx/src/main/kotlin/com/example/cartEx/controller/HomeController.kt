@@ -18,7 +18,7 @@ class HomeController(
     private val cartRepository: CartRepository
 ) {
     companion object {
-        private const val MY_CART = "My Cart"
+        private const val MY_CART = 1
     }
 
     @GetMapping
@@ -33,7 +33,7 @@ class HomeController(
     }
 
     @DeleteMapping("/delete/{id}")
-    fun deleteItem(@PathVariable id: String) : Mono<String> {
+    fun deleteItem(@PathVariable id: Int) : Mono<String> {
         return cartRepository.findById(MY_CART)
             .flatMap { cart -> cart.cartItems.stream()
                 .filter { cartItem -> cartItem.item.id == id }
@@ -49,7 +49,7 @@ class HomeController(
     }
 
     @PostMapping("/add/{id}")
-    fun addToCart(@PathVariable id: String) : Mono<String> {
+    fun addToCart(@PathVariable id: Int) : Mono<String> {
         return cartRepository.findById(MY_CART)
             .defaultIfEmpty(Cart(MY_CART))
             .flatMap { cart ->
@@ -62,7 +62,7 @@ class HomeController(
                     }
                     .orElseGet {
                         itemRepository.findById(id)
-                            .map { item -> CartItem(item) }
+                            .map { item -> CartItem(item = item) }
                             .map { cartItem ->
                                 cart.cartItems.add(cartItem)
                                 cart

@@ -5,9 +5,9 @@ import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 
 @Table
-data class Book(
+class Book(
     @Id
-    val id: Long? = null,
+    var id: Long? = null,
 
     @Column
     val name: String,

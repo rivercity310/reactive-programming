@@ -1,6 +1,9 @@
 package com.example.cartEx.domain
 
+import org.springframework.data.annotation.Id
+
 class CartItem(
+    @Id var id: Int = 0,
     val item: Item,
     var quantity: Int = 0,
 ) {
